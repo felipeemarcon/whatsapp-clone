@@ -168,7 +168,7 @@ export class WhatsAppController {
       this.closeAllMainPanel();
       this.el.panelCamera.addClass('open');
       this.el.panelCamera.css({
-        'height':'calc(100% - 120px)',
+        'height':'calc(100% - 120px)'
       });
 
       this._camera = new CameraController(this.el.videoCamera);
@@ -178,6 +178,7 @@ export class WhatsAppController {
     this.el.btnClosePanelCamera.on('click', e => {
       this.closeAllMainPanel();
       this.el.panelMessagesContainer.show();
+      this._camera.stop();
     });
 
     this.el.btnTakePicture.on('click', e => {
