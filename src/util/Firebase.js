@@ -46,4 +46,31 @@ export class Firebase {
 
   }
 
+  initAuth(){
+
+    return new Promise((s, fn) => {
+
+      let provider = new firebase.auth.GoogleAuthProvider();
+
+      firebase.auth().signInWithPopup(provider)
+        .then(result => {
+
+          let token = result.credential.accessToken;
+          let user = result.user;
+
+          s({
+            user, 
+            token
+          });
+
+        }).catch(err => {
+
+          console.error(err);
+
+        });
+
+    });
+
+  }
+
 }
