@@ -182,14 +182,41 @@ export class WhatsAppController {
       this._user.save().then(() => {
 
         this.el.btnSavePanelEditProfile.disabled = false;
-        
+
       });
 
     });
 
     this.el.formPanelAddContact.on('submit', e => {
+
       e.preventDefault();
+
       let formData = new FormData(this.el.formPanelAddContact);
+
+      let contact = new User(formData.get('email'));
+
+      contact.on('datachange', data => {
+
+        if (data.name) {
+
+          this._user.addContact(contact).then(() => {
+
+            this.el.btnClosePanelAddContact.click();
+
+            console.info('Contato foi adicionado!');
+
+          });
+          
+        } else {
+
+          console.error('Usuário não foi encontrado');
+
+        }
+
+      })
+
+      this._user.addContact();
+
     });
 
     this.el.contactsMessagesList.querySelectorAll('.contact-item').forEach(item => {
