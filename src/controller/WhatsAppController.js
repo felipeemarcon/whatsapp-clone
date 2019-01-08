@@ -1,26 +1,23 @@
-import { Format } from './../util/Format';
+import { Format } from '../util/Format';
 import { CameraController } from './CameraController';
 import { MicrophoneController } from './MicrophoneController';
 import { DocumentPreviewController } from './DocumentPreviewController';
-import { Firebase } from './../util/Firebase';
+import { Firebase } from '../util/Firebase';
 import { User } from '../model/User';
 import { Chat } from '../model/Chat';
 import { Message } from '../model/Message';
 
 export class WhatsAppController {
-  constructor(){
-
+  constructor() {
     this._firebase = new Firebase();
     this.initAuth();
-    
     this.elementsPrototype();
     this.loadElements();
     this.initEvents();
-
   }
 
   initAuth(){
-
+    
     this._firebase.initAuth()
       .then(response => {
 
@@ -289,11 +286,22 @@ export class WhatsAppController {
       return json;
     }
 
-
-
   }
 
   initEvents(){
+
+    this.el.inputSearchContacts.on('keyup', e => {
+
+      if (this.el.inputSearchContacts.value.length > 0) {
+        this.el.inputSearchContactsPlaceholder.hide();
+      } else {
+        this.el.inputSearchContactsPlaceholder.show();
+      }
+
+      this._user.getContacts(this.el.inputSearchContacts.value);
+
+    });
+
     this.el.myPhoto.on('click', e => {
       this.closeAllLeftPanel();
       this.el.panelEditProfile.show();
