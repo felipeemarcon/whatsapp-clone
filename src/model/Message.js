@@ -53,7 +53,6 @@ export class Message extends Model {
   getViewElement(me = true){
 
     let div = document.createElement('div');
-
     div.className = 'message';
 
     switch (this.type) {
@@ -479,15 +478,11 @@ export class Message extends Model {
 
     return new Promise((s, f) => {
 
-      Message.upload(file, from).then(() => {
-
-        uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-          Message.send(
-            chatId,
-            from,
-            'image',
-            downloadURL
-          ).then(() => { s(); });
+      Message.upload(file, from).then(snapshot => {
+        snapshot.ref.getDownloadURL().then(downloadURL => {
+          Message.send(chatId, from, 'image', downloadURL).then(() => {
+            s();
+          });
         });
 
       });
