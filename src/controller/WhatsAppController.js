@@ -108,7 +108,6 @@ export class WhatsAppController {
             <div class="_1AwDx">
               <div class="_itDl">
                 <span title="digitando…" class="vdXUe _1wjpf typing" style="display:none">digitando…</span>
-
                 <span class="_2_LEW last-message">
                   <div class="_1VfKB">
                     <span data-icon="status-dblcheck" class="">
