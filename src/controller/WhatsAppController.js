@@ -122,7 +122,6 @@ export class WhatsAppController {
 
       this.el.contactsMessagesList.innerHTML = '';
 
-
       docs.forEach(doc => {
 
         let contact = doc.data();
@@ -180,17 +179,13 @@ export class WhatsAppController {
         `;
 
         if (contact.photo) {
-
           let img = div.querySelector('.photo');
           img.src = contact.photo;
           img.show();
-
         }
 
         div.on('click', e => {
-
           this.setActiveChat(contact);
-
         });
 
         this.el.contactsMessagesList.appendChild(div);
