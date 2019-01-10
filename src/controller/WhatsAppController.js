@@ -274,11 +274,8 @@ export class WhatsAppController {
         }
         
         if (view && me) {
-
           let msgEl = this.el.panelMessagesContainer.querySelector('#_' + data.id);
-
           msgEl.querySelector('.message-status').innerHTML = message.getStatusViewElement().outerHTML;
-
         }
 
         if (message.type === 'contact') {
