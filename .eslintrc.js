@@ -1,3 +1,3 @@
 export default {
-    "extends": "google",
+    "extends": "google"
 };
